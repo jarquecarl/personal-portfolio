@@ -1,0 +1,209 @@
+.hub-page {
+  align-items: center;
+  justify-content: center;
+}
+
+.hub-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+.hub-label {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.hub-label::before { content: '—— '; color: var(--gold-dim); }
+.hub-label::after { content: ' ——'; color: var(--gold-dim); }
+
+/* CARDS */
+.hub-cards {
+  display: flex;
+  gap: 28px;
+}
+
+.hub-card {
+  width: 300px;
+  border: 1px solid var(--border);
+  background: rgba(6,9,18,0.8);
+  padding: 36px 32px;
+  cursor: none;
+  transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  display: block;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+.hub-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.hub-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(201,168,76,0.12);
+}
+.hub-card:hover::before { opacity: 1; }
+
+.hub-card-num {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.55rem;
+  color: var(--gold-dim);
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hub-card-num-line {
+  flex: 1;
+  height: 1px;
+  background: var(--gold-dim);
+  opacity: 0.4;
+}
+.hub-card-tag {
+  color: var(--cyan);
+  border: 1px solid rgba(0,217,255,0.3);
+  padding: 2px 8px;
+  font-size: 0.5rem;
+}
+
+.hub-card-icon {
+  width: 52px; height: 52px;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  background: rgba(201,168,76,0.05);
+  transition: all 0.3s;
+}
+.hub-card:hover .hub-card-icon {
+  background: rgba(201,168,76,0.15);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(201,168,76,0.2);
+}
+.hub-card-icon svg { width: 22px; height: 22px; fill: var(--gold); }
+
+.hub-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--blue-white);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+.hub-card:hover .hub-card-title { color: var(--gold-light); }
+
+.hub-card-desc {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.hub-card-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.6rem;
+  color: var(--gold-dim);
+  letter-spacing: 3px;
+  transition: all 0.3s;
+}
+.hub-card:hover .hub-card-cta {
+  color: var(--gold);
+  transform: translateX(6px);
+}
+.hub-card-cta svg { fill: currentColor; }
+
+/* STATUS BAR */
+.hub-status {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  opacity: 1;                          /* was 0.4 */
+}
+.hub-status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #00ff88;
+  animation: pulse-green 2s infinite;
+  box-shadow: 0 0 6px rgba(0,255,136,0.6);
+}
+.hub-status span {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.55rem;
+  color: var(--cyan);                  /* was var(--text-dim) */
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(0,217,255,0.4);
+}
+.hub-status-sep {
+  width: 1px; height: 14px;
+  background: var(--gold-dim);
+  opacity: 0.6;                        /* was 0.4 — slightly more visible */
+}
+
+/* ============================================
+   RESPONSIVE — HUB
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .hub-content { gap: 28px; }
+
+  .hub-cards { gap: 20px; }
+
+  .hub-card { width: 260px; padding: 28px 24px; }
+}
+
+@media (max-width: 768px) {
+  .hub-page {
+    overflow: auto !important;
+    min-height: 100dvh !important;
+    align-items: flex-start !important;
+    padding-top: 80px !important;
+  }
+
+  .hub-content {
+    width: 100% !important;
+    padding: 0 20px 100px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hub-content { gap: 20px; padding: 0 16px; }
+
+  .hub-label { font-size: 0.55rem; letter-spacing: 3px; }
+  .hub-label::before { content: '— '; }
+  .hub-label::after  { content: ' —'; }
+
+  .hub-card {
+    width: 100%;
+    max-width: unset;
+    padding: 20px 16px;
+  }
+
+  .hub-card-title { font-size: 0.95rem; }
+  .hub-card-desc  { font-size: 0.8rem; margin-bottom: 16px; }
+
+  .hub-card-icon { width: 44px; height: 44px; }
+  .hub-card-icon svg { width: 18px; height: 18px; }
+
+  .hub-status span { font-size: 0.5rem; }
+}

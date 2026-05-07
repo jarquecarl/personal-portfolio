@@ -1,0 +1,296 @@
+.contact-page {
+  align-items: stretch;
+}
+
+/* LEFT */
+.contact-left {
+  flex: 0 0 44%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0 60px 60px;
+  gap: 12px;
+  position: relative;
+  z-index: 20;
+}
+
+.contact-header { margin-bottom: 8px; }
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  background: rgba(6,9,18,0.6);
+  cursor: none;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.contact-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 3px; height: 100%;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.contact-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.05), transparent);
+  transition: left 0.5s;
+}
+.contact-item:hover::after { left: 100%; }
+.contact-item:hover, .contact-item.active {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.06);
+}
+.contact-item:hover::before,
+.contact-item.active::before { opacity: 1; }
+
+.contact-numeral {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold-dim);
+  min-width: 30px;
+  transition: color 0.3s;
+}
+.contact-item:hover .contact-numeral,
+.contact-item.active .contact-numeral { color: var(--gold); }
+
+.contact-icon-wrap {
+  width: 38px; height: 38px;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  background: rgba(201,168,76,0.05);
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+.contact-item:hover .contact-icon-wrap,
+.contact-item.active .contact-icon-wrap {
+  background: rgba(201,168,76,0.12);
+  border-color: var(--gold);
+}
+.contact-icon-wrap svg { width: 16px; height: 16px; fill: var(--gold); }
+
+.contact-text { flex: 1; }
+.contact-label {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--blue-white);
+  letter-spacing: 3px;
+  transition: color 0.3s;
+}
+.contact-item:hover .contact-label,
+.contact-item.active .contact-label { color: var(--gold-light); }
+
+.contact-arrow {
+  color: var(--gold-dim);
+  font-size: 1rem;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.contact-item:hover .contact-arrow,
+.contact-item.active .contact-arrow {
+  opacity: 1;
+  color: var(--gold);
+  transform: translateX(4px);
+}
+
+/* RIGHT — full height, character fills it entirely */
+.contact-right {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+}
+
+/* Character: absolute, fills the entire right panel */
+.contact-char-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.contact-char-glow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 60%;
+  background: radial-gradient(ellipse at 50% 90%, rgba(201,168,76,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.contact-char-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+/* CUBE HOLOGRAM — cube sits on the hand, panel floats above */
+.cube-hologram-wrap {
+  position: absolute;
+  /* hand is low-left in the right panel: ~80% down, ~20% from left of right panel */
+  top: 77%;
+  left: 21%;
+  transform: translate(-50%, -100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  z-index: 30;
+  animation: fade-in 0.35s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translate(-50%, -97%); }
+  to   { opacity: 1; transform: translate(-50%, -100%); }
+}
+
+.contact-cube-canvas {
+  filter: drop-shadow(0 0 20px var(--cyan)) drop-shadow(0 0 50px rgba(0,217,255,0.3));
+  /* cube sits below the panel, so panel appears above it */
+  order: 2;
+}
+
+.cube-data-panel {
+  order: 1;
+  background: rgba(6,9,18,0.92);
+  border: 1px solid rgba(0,217,255,0.45);
+  padding: 20px 28px;
+  min-width: 240px;
+  text-align: center;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  position: relative;
+  overflow: hidden;
+}
+.cube-data-panel::before {
+  content: '';
+  position: absolute;
+  left: 0; top: -100%;
+  width: 100%; height: 2px;
+  background: rgba(0,217,255,0.3);
+  animation: panel-scan 2s linear infinite;
+}
+@keyframes panel-scan {
+  0%   { top: -5%; }
+  100% { top: 105%; }
+}
+
+.cube-data-label {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.55rem;
+  color: var(--cyan);
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+.cube-data-value {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+  word-break: break-all;
+}
+.cube-data-link {
+  display: inline-block;
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.55rem;
+  color: var(--cyan);
+  letter-spacing: 2px;
+  padding: 6px 16px;
+  border: 1px solid rgba(0,217,255,0.3);
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: none;
+}
+.cube-data-link:hover {
+  background: rgba(0,217,255,0.1);
+  border-color: var(--cyan);
+}
+
+/* HINT */
+.contact-hint {
+  position: absolute;
+  bottom: 30px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.4;
+  z-index: 10;
+}
+.contact-hint-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: pulse-green 2s infinite;
+}
+.contact-hint-text {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+}
+
+@media (max-width: 768px) {
+  .contact-page {
+    flex-direction: column !important;
+    overflow: auto !important;
+    min-height: 100dvh !important;
+  }
+
+  .contact-left {
+    flex: 0 0 auto !important;
+    padding: 72px 16px 16px !important;
+    justify-content: flex-start !important;
+  }
+
+  .contact-right {
+    flex: 0 0 auto !important;
+    min-height: 50vh !important;
+    width: 100% !important;
+  }
+
+  /* Hologram centers properly in right panel */
+  .cube-hologram-wrap {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 20px auto !important;
+    align-items: center !important;
+  }
+
+  .contact-char-wrap { display: none !important; }
+
+  .contact-hint {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    justify-content: center !important;
+    padding: 20px 0 !important;
+  }
+}

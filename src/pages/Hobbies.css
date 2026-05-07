@@ -1,0 +1,342 @@
+.hobbies-page {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 80px 60px 40px;
+}
+
+/* HEADER */
+.hobbies-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+}
+
+.hobbies-header { text-align: center; }
+.hobbies-header .section-title { margin-bottom: 8px; }
+
+.hobbies-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+.progress-bar {
+  width: 120px; height: 2px;
+  background: rgba(201,168,76,0.15);
+}
+.progress-fill {
+  height: 100%;
+  background: var(--gold);
+  width: 100%;
+  box-shadow: 0 0 6px var(--gold);
+}
+.progress-text {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+}
+
+/* FRAMES GALLERY */
+.frames-gallery {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.hobby-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: none;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.hobby-frame:hover, .hobby-frame.active { opacity: 1; }
+
+.frame-border {
+  width: 155px;
+  border: 2px solid rgba(201,168,76,0.3);
+  padding: 6px;
+  position: relative;
+  transition: all 0.3s;
+  background: rgba(6,9,18,0.6);
+}
+.frame-border::before,
+.frame-border::after {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: 0.7;
+}
+.frame-border::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.frame-border::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+.hobby-frame.active .frame-border {
+  border-color: var(--gold);
+  box-shadow: 0 0 24px rgba(201,168,76,0.25);
+}
+
+.frame-inner {
+  width: 100%; height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.frame-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #111828, #0a0f1c);
+  gap: 10px;
+  min-height: 120px;
+}
+.frame-icon { font-size: 2rem; opacity: 0.5; }
+.frame-placeholder-text {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.45rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.frame-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6,9,18,0.85) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px;
+}
+.hobby-frame:hover .frame-overlay,
+.hobby-frame.active .frame-overlay { opacity: 1; }
+.frame-overlay-text {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.55rem;
+  color: var(--gold-light);
+  letter-spacing: 2px;
+}
+
+.frame-info { text-align: center; }
+.frame-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  transition: all 0.3s;
+}
+.hobby-frame.active .frame-name {
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(201,168,76,0.4);
+}
+.frame-desc {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  max-width: 150px;
+  line-height: 1.4;
+}
+.frame-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-dim);
+  margin: 6px auto 0;
+  transition: all 0.3s;
+}
+.hobby-frame.active .frame-dot {
+  background: var(--gold);
+  box-shadow: 0 0 6px var(--gold);
+  border-color: var(--gold);
+}
+
+/* CAROUSEL OVERLAY */
+.carousel-overlay {
+  position: fixed; inset: 0;
+  z-index: 800;
+  background: rgba(6,9,18,0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  padding: 80px 60px 40px;
+}
+
+.carousel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+}
+
+.carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.carousel-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: var(--gold-light);
+  letter-spacing: 2px;
+}
+.carousel-close {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  cursor: none;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+.carousel-close:hover { border-color: var(--gold); color: var(--gold); }
+
+.carousel-main {
+  flex: 1;
+  border: 1px solid var(--border);
+  background: #0a0d18;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 0;
+}
+.carousel-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.carousel-nav {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px;
+  background: rgba(6,9,18,0.8);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  font-size: 1.3rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: none; transition: all 0.2s;
+}
+.carousel-nav:hover { border-color: var(--gold); }
+.carousel-nav.left { left: 12px; }
+.carousel-nav.right { right: 12px; }
+.carousel-counter {
+  position: absolute;
+  bottom: 12px; right: 16px;
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+}
+
+.carousel-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.carousel-empty-icon { font-size: 3rem; opacity: 0.3; }
+.carousel-empty-text {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+}
+.carousel-empty-sub {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.carousel-thumbs {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+.carousel-thumb {
+  flex-shrink: 0;
+  width: 70px; height: 52px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  cursor: none;
+  transition: all 0.2s;
+  background: #0a0d18;
+}
+.carousel-thumb.active { border-color: var(--gold); }
+.carousel-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ============================================
+   RESPONSIVE — HOBBIES
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .hobbies-page { padding: 80px 32px 40px; }
+
+  .frames-gallery { gap: 12px; }
+
+  .frame-border { width: 130px; }
+  .frame-desc { font-size: 0.7rem; max-width: 130px; }
+}
+
+@media (max-width: 768px) {
+  .hobbies-page {
+    overflow: auto !important;
+    min-height: 100dvh !important;
+    justify-content: flex-start !important;
+    padding-bottom: 100px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hobbies-page { padding: 72px 12px 32px; gap: 16px; }
+
+  .hobbies-content { gap: 16px; }
+
+  .frames-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hobby-frame { width: 100%; }
+
+  .frame-border {
+    width: 100%;
+    height: 160px !important; /* override inline height */
+  }
+
+  .frame-desc { display: none; }
+
+  .frame-name { font-size: 0.75rem; }
+
+  .progress-bar { width: 50px; }
+  .progress-text { font-size: 0.5rem; letter-spacing: 1px; }
+
+  /* Carousel */
+  .carousel-overlay { padding: 60px 10px 16px; }
+
+  .carousel-header { gap: 8px; }
+  .carousel-title { font-size: 0.85rem; letter-spacing: 1px; }
+  .carousel-close { font-size: 0.5rem; padding: 6px 10px; }
+
+  .carousel-nav { width: 36px; height: 36px; font-size: 1.1rem; }
+
+  .carousel-thumbs { gap: 5px; }
+  .carousel-thumb { width: 48px; height: 36px; }
+}

@@ -1,0 +1,146 @@
+/* ── HUD ROOT ──────────────────────────────────────────────────────────────── */
+.hud-root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ── CANVAS ────────────────────────────────────────────────────────────────── */
+.hud-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── HUD FRAME ─────────────────────────────────────────────────────────────── */
+.hud-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── SCAN LINE ─────────────────────────────────────────────────────────────── */
+.hud-scan {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0,217,255,0.0) 10%,
+    rgba(0,217,255,0.3) 50%,
+    rgba(0,217,255,0.0) 90%,
+    transparent 100%
+  );
+  animation: hud-scan 10s linear infinite;
+}
+
+@keyframes hud-scan {
+  0%   { top: 8%;   opacity: 0; }
+  4%   { opacity: 0.7; }
+  96%  { opacity: 0.3; }
+  100% { top: 92%;  opacity: 0; }
+}
+
+/* ── TOP BAR ───────────────────────────────────────────────────────────────── */
+.hud-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0%;
+  width: 100%;
+  height: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.hud-chevrons {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  color: rgba(0, 180, 255, 0.5);
+  letter-spacing: 4px;
+  animation: hud-flicker 5s ease-in-out infinite;
+}
+
+.hud-bar-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.58rem;
+  color: rgba(0, 200, 255, 0.45);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  animation: hud-flicker 7s ease-in-out infinite 1s;
+}
+
+/* ── BOTTOM BAR ────────────────────────────────────────────────────────────── */
+.hud-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.hud-bar-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.5rem;
+  color: rgba(0, 180, 255, 0.3);
+  letter-spacing: 4px;
+}
+
+.hud-bottom-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.7);
+  box-shadow: 0 0 6px rgba(201, 168, 76, 0.8);
+  animation: hud-dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes hud-dot-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.4); }
+}
+
+/* ── CORNER PULSES ─────────────────────────────────────────────────────────── */
+.hud-corner-pulse {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: corner-pulse 4s ease-in-out infinite;
+}
+
+.hud-corner-pulse.tl { top: 7.5%;  left: 3.8%;  animation-delay: 0s; }
+.hud-corner-pulse.tr { top: 7.5%;  right: 3.8%; animation-delay: 1s; }
+.hud-corner-pulse.bl { bottom: 7.5%; left: 3.8%;  animation-delay: 2s; }
+.hud-corner-pulse.br { bottom: 7.5%; right: 3.8%; animation-delay: 3s; }
+
+@keyframes corner-pulse {
+  0%, 100% { box-shadow: none; opacity: 0; }
+  50% {
+    box-shadow:
+      0 0 0 5px rgba(0,217,255,0.12),
+      0 0 0 10px rgba(0,217,255,0.06),
+      0 0 20px rgba(0,217,255,0.5);
+    opacity: 1;
+  }
+}
+
+/* ── FLICKER ───────────────────────────────────────────────────────────────── */
+@keyframes hud-flicker {
+  0%, 90%, 100% { opacity: 1; }
+  92%           { opacity: 0.6; }
+  94%           { opacity: 1; }
+  96%           { opacity: 0.5; }
+  98%           { opacity: 0.9; }
+}

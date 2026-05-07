@@ -1,0 +1,179 @@
+.aria-sphere-root {
+  position: fixed;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* SPHERE BUTTON */
+.aria-sphere-btn {
+  position: relative;
+  cursor: none;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 14px rgba(0,217,255,0.7));
+  transition: filter 0.3s;
+}
+.aria-sphere-btn:hover,
+.aria-sphere-btn.active {
+  filter: drop-shadow(0 0 18px rgba(0,217,255,0.7)) drop-shadow(0 0 40px rgba(0,217,255,0.3));
+}
+
+.aria-sphere-ping {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,217,255,0.4);
+  animation: aria-sphere-ping 2.5s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes aria-sphere-ping {
+  0% { transform: translate(-50%,-50%) scale(1); opacity: 0.5; }
+  100% { transform: translate(-50%,-50%) scale(2); opacity: 0; }
+}
+
+/* SPEECH BUBBLE */
+.aria-speech-bubble {
+  position: absolute;
+  background: rgba(6,9,18,0.96);
+  border: 1px solid rgba(0,217,255,0.45);
+  padding: 16px 18px;
+  width: 280px;
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+}
+
+.aria-speech-bubble::before {
+  content: '';
+  position: absolute;
+  left: 0; top: -100%;
+  width: 100%; height: 2px;
+  background: rgba(0,217,255,0.4);
+  animation: aria-scan 2.5s linear infinite;
+}
+@keyframes aria-scan {
+  0% { top: -5%; }
+  100% { top: 105%; }
+}
+
+.aria-speech-bubble.visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: scale(1);
+}
+
+/* Bubble position: left of sphere (when sphere is on right side) */
+.aria-speech-bubble.left {
+  right: 64px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+}
+.aria-speech-bubble.left.visible {
+  transform: translateY(-50%) scale(1);
+}
+
+/* Bubble position: right of sphere (when sphere is on left side) */
+.aria-speech-bubble.right {
+  left: 64px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+}
+.aria-speech-bubble.right.visible {
+  transform: translateY(-50%) scale(1);
+}
+
+/* Bubble content */
+.aria-bubble-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.aria-bubble-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #00d9ff;
+  animation: pulse-green 2s infinite;
+  flex-shrink: 0;
+}
+.aria-bubble-name {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.65rem;
+  color: #00d9ff;
+  letter-spacing: 3px;
+}
+.aria-bubble-wave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+  margin-left: 2px;
+}
+.aria-bubble-wave span {
+  display: block;
+  width: 2px;
+  background: #00d9ff;
+  border-radius: 1px;
+  animation: wave 1.2s ease-in-out infinite;
+}
+.aria-bubble-wave span:nth-child(1) { height: 4px; animation-delay: 0s; }
+.aria-bubble-wave span:nth-child(2) { height: 8px; animation-delay: 0.1s; }
+.aria-bubble-wave span:nth-child(3) { height: 12px; animation-delay: 0.2s; }
+.aria-bubble-wave span:nth-child(4) { height: 8px; animation-delay: 0.3s; }
+.aria-bubble-wave span:nth-child(5) { height: 4px; animation-delay: 0.4s; }
+
+.aria-bubble-msg {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(212,234,247,0.88);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.aria-bubble-actions {
+  display: flex;
+  gap: 8px;
+}
+.aria-bubble-btn {
+  flex: 1;
+  padding: 6px 10px;
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 1.5px;
+  border: 1px solid;
+  cursor: none;
+  transition: all 0.2s;
+  background: transparent;
+}
+.aria-bubble-btn.primary {
+  border-color: rgba(0,217,255,0.4);
+  color: #00d9ff;
+}
+.aria-bubble-btn.primary:hover {
+  background: rgba(0,217,255,0.1);
+  border-color: #00d9ff;
+}
+.aria-bubble-btn.secondary {
+  border-color: rgba(212,234,247,0.15);
+  color: rgba(212,234,247,0.4);
+}
+.aria-bubble-btn.secondary:hover {
+  border-color: rgba(212,234,247,0.3);
+  color: rgba(212,234,247,0.6);
+}
+
+/* Bubble position: top-right of sphere */
+.aria-speech-bubble.top-right {
+  bottom: 74px;
+  left: 74px;
+  transform: scale(0.9);
+}
+.aria-speech-bubble.top-right.visible {
+  transform: scale(1);
+}

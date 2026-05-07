@@ -1,0 +1,338 @@
+.projects-page {
+  align-items: stretch;
+}
+
+/* LEFT LIST */
+.projects-list {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 0 40px 60px;
+  gap: 14px;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+}
+.projects-list::-webkit-scrollbar { width: 3px; }
+.projects-list::-webkit-scrollbar-thumb { background: var(--border); }
+
+.projects-list-header { margin-bottom: 4px; }
+
+.project-card {
+  border: 1px solid var(--border);
+  background: rgba(6,9,18,0.7);
+  padding: 16px;
+  cursor: none;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+.project-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 3px; height: 100%;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.project-card:hover, .project-card.active {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.06);
+}
+.project-card:hover::before,
+.project-card.active::before { opacity: 1; }
+
+.project-card-num {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.5rem;
+  color: var(--gold-dim);
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+}
+.project-card-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--blue-white);
+  margin-bottom: 4px;
+  transition: color 0.3s;
+}
+.project-card:hover .project-card-name,
+.project-card.active .project-card-name { color: var(--gold-light); }
+.project-card-type {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.5rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+.project-card-tags {
+  display: flex; flex-wrap: wrap; gap: 4px;
+}
+.project-tag {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.48rem;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  padding: 2px 6px;
+  border: 1px solid rgba(0,217,255,0.2);
+  background: rgba(0,217,255,0.04);
+}
+.project-card-arrow {
+  position: absolute;
+  right: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-dim);
+  font-size: 1.1rem;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.project-card:hover .project-card-arrow,
+.project-card.active .project-card-arrow { opacity: 1; color: var(--gold); }
+
+/* RIGHT DETAIL */
+.project-detail {
+  flex: 1;
+  padding: 80px 60px 40px 48px;
+  overflow-y: auto;
+}
+.project-detail::-webkit-scrollbar { width: 3px; }
+.project-detail::-webkit-scrollbar-thumb { background: var(--border); }
+
+/* detail content wrapper — used in both desktop panel and mobile accordion */
+.project-detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-badge {
+  display: inline-block;
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.55rem;
+  color: var(--cyan);
+  letter-spacing: 3px;
+  padding: 3px 12px;
+  border: 1px solid rgba(0,217,255,0.3);
+  background: rgba(0,217,255,0.05);
+  width: fit-content;
+}
+.detail-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+}
+.detail-divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-dim), transparent);
+  opacity: 0.4;
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.detail-field { display: flex; flex-direction: column; gap: 3px; }
+.detail-field-label {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.5rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+}
+.detail-field-value {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blue-white);
+}
+.detail-desc {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(212,234,247,0.8);
+  line-height: 1.7;
+}
+.detail-stack-label {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.5rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  margin-bottom: -8px;
+}
+.detail-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+.stack-tag {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.55rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  padding: 5px 12px;
+  border: 1px solid rgba(201,168,76,0.3);
+  background: rgba(201,168,76,0.05);
+  transition: all 0.2s;
+}
+.stack-tag:hover { border-color: var(--gold); background: rgba(201,168,76,0.1); }
+
+.detail-img-area {
+  position: relative;
+  border: 1px solid var(--border);
+  background: #0a0d18;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.detail-img { width: 100%; height: 100%; object-fit: cover; }
+.detail-img-placeholder {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.detail-img-nav {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px;
+  background: rgba(6,9,18,0.8);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  cursor: none; font-size: 1.1rem; transition: all 0.2s;
+}
+.detail-img-nav:hover { border-color: var(--gold); }
+.detail-img-nav.left { left: 8px; }
+.detail-img-nav.right { right: 8px; }
+.detail-img-counter {
+  position: absolute;
+  bottom: 8px; right: 10px;
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+}
+
+.detail-github-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  cursor: none;
+  transition: all 0.25s;
+  text-decoration: none;
+  width: fit-content;
+}
+.detail-github-btn:hover { border-color: var(--gold); color: var(--gold); }
+.detail-github-btn svg {
+  width: 16px; height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================
+   MOBILE ACCORDION
+   ============================================ */
+
+.projects-page--mobile {
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.projects-accordion {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 80px;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  cursor: pointer;
+  background: rgba(6,9,18,0.7);
+  transition: background 0.25s, border-color 0.25s;
+  position: relative;
+}
+.accordion-item.open .accordion-header {
+  background: rgba(201,168,76,0.06);
+  border-left: 3px solid var(--gold);
+}
+
+.accordion-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+/* chevron rotates when open */
+.accordion-chevron {
+  color: var(--gold-dim);
+  font-size: 1.3rem;
+  line-height: 1;
+  transition: transform 0.3s, color 0.3s;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+.accordion-chevron.open {
+  transform: rotate(90deg);
+  color: var(--gold);
+}
+
+/* accordion body: height transition via max-height */
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.accordion-item.open .accordion-body {
+  max-height: 1200px; /* tall enough for any content */
+}
+
+.accordion-body .project-detail-content {
+  padding: 16px 20px 24px;
+  border-top: 1px solid rgba(201,168,76,0.15);
+  background: rgba(6,9,18,0.5);
+}
+
+/* ============================================
+   RESPONSIVE — PROJECTS (desktop breakpoints)
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .projects-list {
+    flex: 0 0 260px;
+    padding: 80px 0 40px 32px;
+  }
+  .project-detail { padding: 80px 32px 40px 32px; }
+  .detail-title { font-size: 1.3rem; }
+}
+
+@media (max-width: 480px) {
+  .accordion-header { padding: 12px 14px; }
+  .project-card-name { font-size: 0.82rem; }
+  .project-card-num { font-size: 0.45rem; }
+  .accordion-body .project-detail-content { padding: 14px 14px 20px; }
+  .detail-title { font-size: 1rem; }
+  .detail-badge { font-size: 0.5rem; letter-spacing: 2px; }
+  .detail-grid { gap: 10px; }
+  .detail-field-value { font-size: 0.8rem; }
+  .detail-desc { font-size: 0.82rem; }
+  .stack-tag { font-size: 0.5rem; padding: 4px 8px; }
+  .detail-img-area { height: 140px; }
+  .detail-img-nav { width: 30px; height: 30px; font-size: 1rem; }
+}

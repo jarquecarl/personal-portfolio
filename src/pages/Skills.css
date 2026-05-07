@@ -1,0 +1,246 @@
+.skills-page {
+  align-items: stretch;
+}
+
+/* CHARACTER AREA */
+.skills-char-area {
+  flex: 0 0 38%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end; /* push character to the right edge */
+  overflow: visible;         /* allow character to overlap the divider */
+}
+
+.skills-char-glow {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 280px; height: 500px;
+  background: radial-gradient(ellipse at 60% 80%, rgba(201,168,76,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.skills-char-img {
+  position: relative;
+  /* shift right so the character leans over the gold border line */
+  right: -143px;
+  width: auto;
+  height: 92vh;
+  max-height: 92vh;
+  object-fit: contain;
+  object-position: bottom right;
+  display: block;
+  z-index: 10;
+  filter: drop-shadow(-4px 0 24px rgba(201,168,76,0.10));
+}
+
+/* SKILLS PANEL */
+.skills-panel {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  border-left: 1px solid var(--border);
+  z-index: 5; /* character sits on top of panel border */
+}
+.skills-panel::-webkit-scrollbar { width: 3px; }
+.skills-panel::-webkit-scrollbar-thumb { background: var(--border); }
+.skills-panel::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 2px; height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--gold-dim) 20%, var(--gold) 50%, var(--gold-dim) 80%, transparent);
+  z-index: 1;
+}
+
+.skills-panel-inner {
+  padding: 80px 60px 60px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skills-divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-dim), transparent);
+  opacity: 0.4;
+  margin: 4px 0;
+}
+
+/* SKILL GROUPS */
+.skill-group { display: flex; flex-direction: column; gap: 12px; }
+.skill-cat-title {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.6rem;
+  color: var(--cyan);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.skill-cat-title::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, var(--cyan-dim), transparent);
+  opacity: 0.5;
+}
+
+/* SKILL BARS */
+.skill-bar-item { margin-bottom: 4px; }
+.skill-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.skill-bar-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem; font-weight: 600;
+  color: var(--blue-white); letter-spacing: 1px;
+}
+.skill-bar-tag {
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+}
+.skill-bar-track {
+  width: 100%; height: 4px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-light));
+  transition: width 1.2s cubic-bezier(0.25,0.46,0.45,0.94);
+  box-shadow: 0 0 8px rgba(201,168,76,0.4);
+  position: relative;
+}
+.skill-bar-fill::after {
+  content: '';
+  position: absolute;
+  right: 0; top: -2px;
+  width: 8px; height: 8px;
+  background: var(--gold-light);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--gold);
+}
+
+/* TECH TAGS */
+.tech-tags-wrap {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.tech-tag {
+  padding: 6px 14px;
+  border: 1px solid rgba(0,217,255,0.2);
+  background: rgba(0,217,255,0.04);
+  font-family: 'Share Tech Mono', sans-serif;
+  font-size: 0.6rem; color: var(--cyan); letter-spacing: 2px;
+  transition: all 0.25s; cursor: default;
+}
+.tech-tag:hover { border-color: var(--cyan); background: rgba(0,217,255,0.1); }
+
+/* SOFT SKILLS */
+.soft-skills-wrap {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.soft-skill-chip {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  background: rgba(201,168,76,0.04);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.82rem; font-weight: 600;
+  color: var(--blue-white); letter-spacing: 1px;
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+  transition: all 0.25s; cursor: default;
+}
+.soft-skill-chip:hover {
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.1);
+  color: var(--gold-light);
+}
+/* ============================================
+   RESPONSIVE — SKILLS
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .skills-char-img {
+    right: -80px;
+    height: 75vh;
+  }
+
+  .skills-panel-inner { padding: 80px 40px 60px 32px; }
+}
+
+@media (max-width: 768px) {
+  .skills-char-area {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .skills-char-img {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 70vh !important;
+    width: auto !important;
+    opacity: 0.12 !important;
+    filter: drop-shadow(0 0 0px transparent) !important;
+    object-position: bottom right !important;
+  }
+
+  .skills-char-glow { display: none !important; }
+
+  .skills-panel {
+    position: relative !important;
+    z-index: 1 !important;
+    border-left: none !important;
+    width: 100% !important;
+    background: transparent !important;
+  }
+}@media (max-width: 768px) {
+  .skills-page { flex-direction: column; }
+
+  /* Hide character on tablet — panel takes full screen */
+  .skills-char-area { display: none; }
+
+  .skills-panel {
+    border-left: none;
+    overflow-y: auto;
+    width: 100%;
+  }
+
+  .skills-panel::before { display: none; }
+
+  .skills-panel-inner { padding: 80px 32px 80px 32px; gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .skills-panel-inner { padding: 72px 16px 80px 16px; gap: 14px; }
+
+  .skill-bar-name { font-size: 0.82rem; }
+  .skill-bar-tag  { font-size: 0.5rem; padding: 2px 6px; }
+
+  .skill-cat-title { font-size: 0.55rem; letter-spacing: 2px; }
+
+  .tech-tag {
+    font-size: 0.55rem;
+    padding: 5px 10px;
+    letter-spacing: 1px;
+  }
+
+  .soft-skill-chip {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+}
