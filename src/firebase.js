@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAKLKLV7VL5sIa5jyZHaD4Ki4jyYFaRdBE",
+  apiKey: ,
   authDomain: "jarque-portfolio.firebaseapp.com",
   projectId: "jarque-portfolio",
   storageBucket: "jarque-portfolio.firebasestorage.app",
