@@ -1,4 +1,4 @@
-# 🌐 Personal Portfolio — v1
+# 🌐 Personal Portfolio
 
 My first portfolio site, built entirely in vanilla HTML, CSS, and JavaScript — no frameworks, no build tools. A deliberate exercise in web fundamentals before moving to React.
 
