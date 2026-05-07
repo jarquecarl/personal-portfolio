@@ -3,7 +3,6 @@
 My first portfolio site, built entirely in vanilla HTML, CSS, and JavaScript — no frameworks, no build tools. A deliberate exercise in web fundamentals before moving to React.
 
 [![Live Site](https://img.shields.io/badge/Live%20Site-jarque--portfolio.web.app-FF6F00?style=flat-square&logo=firebase&logoColor=white)](https://jarquecarl.netlify.app/)
-[![GitHub](https://img.shields.io/badge/GitHub-jarquecarl-181717?style=flat-square&logo=github)](https://github.com/jarquecarl/portfolio)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
